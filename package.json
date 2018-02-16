@@ -1,0 +1,25 @@
+{
+  "name": "134508-kekstagram",
+  "version": "1.0.0",
+  "description": "* Студент: [Алексей Борисов](https://up.htmlacademy.ru/nodejs/1/user/134508). * Наставник: `Неизвестно`.",
+  "main": "index.js",
+  "scripts": {
+    "test:lint": "eslint .",
+    "test": "npm run test:lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/borisstgermain/134508-kekstagram.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/borisstgermain/134508-kekstagram/issues"
+  },
+  "homepage": "https://github.com/borisstgermain/134508-kekstagram#readme",
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-htmlacademy": "^0.4.2"
+  }
+}
