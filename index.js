@@ -1,4 +1,5 @@
 const executor = require(`./src/executor`);
+const {getErrorMessage} = require(`./src/utils/log`);
 
 const args = process.argv.slice(2);
 const command = args[0];
@@ -19,8 +20,5 @@ for (let execute in executor) {
   }
 }
 
-console.error(`
-  Неизвестная команда ${command}.
-  Чтобы прочитать правила использования приложения, наберите "--help"
-`);
+console.error(getErrorMessage(command));
 process.exit(1);

@@ -1,14 +1,20 @@
+const {getHelpCommand} = require(`./utils/log`);
+const commands = [
+  require(`./version`),
+  require(`./author`),
+  require(`./description`),
+  require(`./license`),
+];
+
+
 module.exports = {
   name: `--help`,
   description: `Печатает доступные команды`,
   execute() {
-    console.log(`
-        Доступные команды:
-        --help        – печатает этот текст;
-        --version     – печатает версию приложения;
-        --about       – печатает автора приложения;
-        --description – печатает описание приложения;
-        --license     – печатает лицензию приложения;
-      `);
+    console.log(`Доступные команды:`);
+    console.log(getHelpCommand(this.name, this.description));
+    for (const {name, description} of commands) {
+      console.log(getHelpCommand(name, description));
+    }
   }
 };
