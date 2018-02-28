@@ -5,7 +5,7 @@ describe(`generateEntity`, () => {
   let entity;
 
   beforeEach(() => {
-    entity = generateEntity()[0];
+    entity = generateEntity();
   });
 
   describe(`url`, () => {
@@ -40,6 +40,7 @@ describe(`generateEntity`, () => {
   });
 
   describe(`hashtags`, () => {
+    const isFirstHashtagChar = (hashtag) => hashtag.substr(0, 1) === `#`;
     let hashtags;
 
     before(() => {
@@ -47,7 +48,7 @@ describe(`generateEntity`, () => {
     });
 
     it(`should contain correct hashtag (#)`, () => {
-      assert.ok(hashtags[0].includes(`#`));
+      assert.ok(hashtags.every(isFirstHashtagChar));
     });
 
     it(`should contain correct hashtags amount`, () => {
@@ -55,7 +56,12 @@ describe(`generateEntity`, () => {
     });
 
     it(`should contain correct hashtag length`, () => {
-      assert.ok(hashtags[0].length < 21);
+      assert.ok(hashtags.every((hashtag) => hashtag.length < 21));
+    });
+
+    it(`should contain unique hashtags`, () => {
+      const uniqIndexHashtags = hashtags.filter((val, idx, arr) => arr.indexOf(val) === idx);
+      assert.equal(hashtags.length, uniqIndexHashtags.length);
     });
   });
 
@@ -66,6 +72,6 @@ describe(`generateEntity`, () => {
 
   it(`should correct comment length`, () => {
     const {comments} = entity;
-    assert.ok(comments[0].length < 141);
+    assert.ok(comments.every((comment) => comment.length < 141));
   });
 });
