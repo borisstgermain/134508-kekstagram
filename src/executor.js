@@ -4,6 +4,7 @@ const author = require(`./author`);
 const description = require(`./description`);
 const license = require(`./license`);
 const greeting = require(`./greeting`);
+const server = require(`./server`);
 
 module.exports = {
   help,
@@ -11,5 +12,6 @@ module.exports = {
   author,
   description,
   license,
-  greeting
+  greeting,
+  server,
 };

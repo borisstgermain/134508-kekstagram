@@ -2,17 +2,23 @@ const executor = require(`./src/executor`);
 const {getErrorMessage} = require(`./src/utils/log`);
 
 const args = process.argv.slice(2);
-const command = args[0];
+const [command, ...arg] = args;
 
 if (!command) {
   executor.greeting.execute();
 } else {
+  let exec;
+
   for (let execute in executor) {
     if (executor[execute].name === command) {
-      executor[execute].execute();
-      process.exit(0);
+      exec = executor[execute];
     }
   }
-  console.error(getErrorMessage(command));
-  process.exit(1);
+
+  if (exec) {
+    exec.execute(...arg);
+  } else {
+    console.error(getErrorMessage(command));
+    process.exit(1);
+  }
 }

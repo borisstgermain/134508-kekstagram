@@ -4,6 +4,7 @@ const commands = [
   require(`./author`),
   require(`./description`),
   require(`./license`),
+  require(`./server`),
 ];
 
 
