@@ -56,7 +56,8 @@ function generateEnitity() {
     hashtags: getRandomStrings(hashtags, 5, 2),
     description: strings[generateRandomNumber(0, 9)],
     likes: generateRandomNumber(0, 1000),
-    comments: getRandomStrings(strings, 9)
+    comments: getRandomStrings(strings, 9),
+    date: Date.now()
   };
 }
 
