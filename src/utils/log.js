@@ -13,8 +13,17 @@ function getErrorMessage(name) {
   `;
 }
 
+function formatError(name, value, message) {
+  return {
+    name,
+    value,
+    message
+  };
+}
+
 module.exports = {
   getHelpCommand,
-  getErrorMessage
+  getErrorMessage,
+  formatError
 };
 

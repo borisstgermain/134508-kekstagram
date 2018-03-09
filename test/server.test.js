@@ -1,6 +1,7 @@
 const request = require(`supertest`);
 const assert = require(`assert`);
 const {app} = require(`../src/server`);
+const path = require(`path`);
 
 describe(`GET /api/posts`, () => {
   it(`responded with JSON`, () => {
@@ -46,7 +47,10 @@ describe(`POST /api/posts`, () => {
           description: `Самая красивая тачка на этой планете`,
           effect: `chrome`,
           hashtags: [`#тачка`, `#огонь`, `#car`, `#bmwX5`],
-          scale: 100
+          scale: 100,
+          filename: {
+            mimetype: `image/png`
+          }
         })
         .expect(200)
         .expect({
@@ -64,12 +68,13 @@ describe(`POST /api/posts`, () => {
         .field(`effect`, `chrome`)
         .field(`hashtags`, [`#тачка`, `#огонь`, `#car`, `#bmwX5`])
         .field(`scale`, 100)
+        .attach(`filename`, path.join(__dirname, `./fixtures/image.png`))
         .expect(200)
         .expect({
           description: `Самая красивая тачка на этой планете`,
           effect: `chrome`,
           hashtags: [`#тачка`, `#огонь`, `#car`, `#bmwX5`],
-          scale: 100
+          scale: 100,
         });
   });
 
@@ -80,7 +85,10 @@ describe(`POST /api/posts`, () => {
           description: `Самая красивая тачка на этой планете`,
           effect: `chrome`,
           hashtags: [`#тачка`, `#огонь`, `#car`, `#bmwX5`],
-          scale: 100
+          scale: 100,
+          filename: {
+            mimetype: `image/png`
+          }
         })
         .expect(404)
         .expect(`Content-Type`, /html/);
