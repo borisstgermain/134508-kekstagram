@@ -3,6 +3,8 @@ const {getErrorMessage} = require(`./utils/log`);
 const generateEntity = require(`./utils/generate-entity`);
 const multer = require(`multer`);
 const bodyParser = require(`body-parser`);
+const validator = require(`./utils/validator`);
+const {schema} = require(`./posts/validation`);
 
 const app = express();
 const upload = multer({storage: multer.memoryStorage()});
@@ -34,8 +36,23 @@ app.get(`/api/posts/:date`, (req, res) => {
     res.send(post);
   }
 });
-app.post(`/api/posts`, upload.none(), (req, res) => {
-  res.send(req.body);
+app.post(`/api/posts`, upload.single(`filename`), (req, res) => {
+  const data = req.body;
+  data.filename = req.file || data.filename;
+  const errors = validator(data, schema);
+
+  if (errors.length > 0) {
+    res.status(400)
+        .json(errors)
+        .end();
+
+    return;
+  }
+
+  delete data.filename;
+
+  res.status(200)
+      .send(data);
 });
 
 module.exports = {
