@@ -11,7 +11,13 @@ function validator(data, schema) {
     }
 
     if (val) {
-      schema[key].validate(val, errors);
+      schema[key].validate.forEach((assertion) => {
+        const {ok, message} = assertion(val);
+
+        if (!ok) {
+          errors.push(formatError(key, val, message));
+        }
+      });
     }
   }
 
