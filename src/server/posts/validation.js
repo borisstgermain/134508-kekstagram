@@ -1,5 +1,5 @@
-const {numberInRange, isContainSymbol, isContainFirstSymbol, isStringLong, isUniqueArr} = require(`../utils/checker`);
-const {formatError} = require(`../utils/log`);
+const {numberInRange, isContainSymbol, isContainFirstSymbol, isStringLong, isUniqueArr} = require(`../../utils/checker`);
+const {formatError} = require(`../../utils/log`);
 
 const effects = [`none`, `chrome`, `sepia`, `marvin`, `phobos`, `heat`];
 
