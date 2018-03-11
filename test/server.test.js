@@ -1,7 +1,11 @@
 const request = require(`supertest`);
 const assert = require(`assert`);
-const {app} = require(`../src/server`);
+const app = require(`express`)();
 const path = require(`path`);
+const {POSTS} = require(`../src/server/routers`);
+const postsRouter = require(`./server/posts/mock-router`);
+
+app.use(POSTS, postsRouter);
 
 describe(`GET /api/posts`, () => {
   it(`responded with JSON`, () => {
@@ -12,7 +16,6 @@ describe(`GET /api/posts`, () => {
         .expect(`Content-Type`, /json/)
         .then((res) => {
           const posts = res.body;
-          assert.equal(posts.data.length, 13);
           assert.equal(Object.keys(posts.data[0]).length, 8);
         });
   });
@@ -48,18 +51,22 @@ describe(`POST /api/posts`, () => {
           effect: `chrome`,
           hashtags: [`#тачка`, `#огонь`, `#car`, `#bmwX5`],
           scale: 100,
+          url: `https://picsum.photos/600/?random`,
           filename: {
+            path: `/api/posts/1234/image`,
             mimetype: `image/png`
-          }
+          },
         })
         .expect(200)
         .expect({
           description: `Самая красивая тачка на этой планете`,
           effect: `chrome`,
           hashtags: [`#тачка`, `#огонь`, `#car`, `#bmwX5`],
-          scale: 100
+          scale: 100,
+          url: `https://picsum.photos/600/?random`,
         });
   });
+
 
   it(`should consume form-data`, () => {
     return request(app)
