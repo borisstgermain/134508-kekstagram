@@ -1,5 +1,5 @@
 const app = require(`./server`);
-const {getErrorMessage} = require(`./utils/log`);
+const logger = require(`./utrils/logger`);
 
 
 const HOSTNAME = process.env.SERVER_HOST || `0.0.0.0`;
@@ -11,10 +11,10 @@ module.exports = {
   execute(port = PORT) {
     app.listen(port, HOSTNAME, (err) => {
       if (err) {
-        console.error(getErrorMessage(err));
+        logger.error(err);
       }
 
-      console.log(`Server start! ${HOSTNAME}:${port}`);
+      logger.info(`Server start! ${HOSTNAME}:${port}`);
     });
   }
 };

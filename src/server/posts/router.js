@@ -4,11 +4,17 @@ const multer = require(`multer`);
 const validator = require(`../../utils/validator`);
 const {schema} = require(`./validation`);
 const createStreamFromBuffer = require(`../../utils/buffer-to-stream`);
+const logger = require(`../../utils/logger`);
 
 const postsRouter = new Router();
 const upload = multer({storage: multer.memoryStorage()});
 
 postsRouter.use(bodyParser.json());
+postsRouter.use((req, res, next) => {
+  res.header(`Access-Control-Allow-Origin`, `*`);
+  res.header(`Access-Control-Allow-Headers`, `Origin, X-Requested-With, Content-Type, Accept`);
+  next();
+});
 
 const asyncWrap = (fn) => (req, res, next) => fn(req, res, next).catch(next);
 
@@ -32,7 +38,7 @@ postsRouter.get(
 
         res.send(posts);
       } catch (err) {
-        console.log(`не удалось получить все посты`, err);
+        logger.error(`не удалось получить все посты`, err);
       }
     })
 );
@@ -51,7 +57,7 @@ postsRouter.get(
           res.status(404).send();
         }
       } catch (err) {
-        console.log(err);
+        logger.error(err);
       }
     })
 );
@@ -75,7 +81,7 @@ postsRouter.get(
           res.status(404).send();
         }
       } catch (error) {
-        console.log(error);
+        logger.error(error);
       }
     })
 );
@@ -116,7 +122,7 @@ postsRouter.post(
           await postsRouter.postsStore.save(data);
           res.send(req.body);
         } catch (error) {
-          console.log(error);
+          logger.error(error);
         }
       }
     })
