@@ -1,6 +1,6 @@
 const {MongoClient} = require(`mongodb`);
 
-const url = `mongodb://localhost:27017`;
+const url = `mongodb://${process.env.DB_HOST || `localhost:27017`}`;
 
 module.exports = MongoClient.connect(url)
     .then((client) => client.db(`kekstagramm`))

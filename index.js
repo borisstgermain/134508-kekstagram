@@ -1,3 +1,4 @@
+require(`dotenv`).config();
 const executor = require(`./src/executor`);
 const {getErrorMessage} = require(`./src/utils/log`);
 
