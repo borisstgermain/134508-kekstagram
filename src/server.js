@@ -1,5 +1,5 @@
 const app = require(`./server`);
-const logger = require(`./utrils/logger`);
+const logger = require(`./utils/logger`);
 
 
 const HOSTNAME = process.env.SERVER_HOST || `0.0.0.0`;
