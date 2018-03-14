@@ -1,7 +1,7 @@
 const {Router} = require(`express`);
 const bodyParser = require(`body-parser`);
 const multer = require(`multer`);
-const validator = require(`../../utils/validator`);
+const validate = require(`../../utils/validator`);
 const {schema} = require(`./validation`);
 const createStreamFromBuffer = require(`../../utils/buffer-to-stream`);
 const logger = require(`../../utils/logger`);
@@ -98,7 +98,7 @@ postsRouter.post(
         data.filename = image;
       }
 
-      const errors = validator(data, schema);
+      const errors = validate(data, schema);
 
       if (errors.length > 0) {
         res.status(400)

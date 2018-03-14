@@ -1,7 +1,7 @@
 const {
   isImage,
-  numberInRange,
-  textRange,
+  hasNumberInRange,
+  hasTextRange,
   isContainSymbol,
   isContainFirstSymbol,
   isStringLong,
@@ -25,7 +25,7 @@ const schema = {
 
   'scale': {
     required: true,
-    validate: [(val) => numberInRange(val, 0, 100)]
+    validate: [(val) => hasNumberInRange(val, 0, 100)]
   },
 
   'effect': {
@@ -49,7 +49,7 @@ const schema = {
   },
 
   'description': {
-    validate: [(val) => textRange(val, 140)]
+    validate: [(val) => hasTextRange(val, 140)]
   }
 };
 

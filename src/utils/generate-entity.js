@@ -19,11 +19,11 @@ const strings = [
   `Старшая сестра - звучит горденько!`
 ];
 
-function generateUrl() {
+const generateUrl = () => {
   return `https://picsum.photos/600/?random`;
-}
+};
 
-function getRandomStrings(collection, maxAmount, minAmount = 1) {
+const getRandomStrings = (collection, maxAmount, minAmount = 1) => {
   const amount = generateRandomNumber(minAmount, maxAmount);
   const stringArr = [];
 
@@ -36,7 +36,7 @@ function getRandomStrings(collection, maxAmount, minAmount = 1) {
   }
 
   return stringArr;
-}
+};
 
 /**
  * Generate random number between min and max included
@@ -44,11 +44,11 @@ function getRandomStrings(collection, maxAmount, minAmount = 1) {
  * @param {number} max
  * @return {number}
  */
-function generateRandomNumber(min, max) {
+const generateRandomNumber = (min, max) => {
   return Math.floor(min + Math.random() * (max + 1 - min));
-}
+};
 
-function generateEnitity() {
+const generateEnitity = () => {
   return {
     url: generateUrl(),
     scale: generateRandomNumber(0, 100),
@@ -59,6 +59,6 @@ function generateEnitity() {
     comments: getRandomStrings(strings, 9),
     date: Date.now()
   };
-}
+};
 
 module.exports = generateEnitity;

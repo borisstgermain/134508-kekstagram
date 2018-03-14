@@ -1,6 +1,6 @@
 const {formatError} = require(`./log`);
 
-function validator(data, schema) {
+const validate = (data, schema) => {
   const errors = [];
 
   for (const key of Object.keys(schema)) {
@@ -22,6 +22,6 @@ function validator(data, schema) {
   }
 
   return errors;
-}
+};
 
-module.exports = validator;
+module.exports = validate;
