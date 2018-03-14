@@ -1,5 +1,5 @@
-const app = require(`./server/app`);
-const logger = require(`./utils/logger`);
+const app = require(`../server/app`);
+const logger = require(`../utils/logger`);
 
 const HOSTNAME = process.env.SERVER_HOST || `0.0.0.0`;
 const PORT = process.env.SERVER_PORT || 3000;

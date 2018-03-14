@@ -1,10 +1,9 @@
-const {getHelpCommand} = require(`./utils/log`);
+const {getHelpCommand} = require(`../utils/log`);
 const commands = [
   require(`./version`),
   require(`./author`),
-  require(`./description`),
-  require(`./license`),
   require(`./server`),
+  require(`./fill`)
 ];
 
 

@@ -23,6 +23,10 @@ class PostsStore {
   async save(post) {
     return (await this.collection).insertOne(post);
   }
+
+  async saveSet(posts) {
+    return (await this.collection).insertMany(posts);
+  }
 }
 
 module.exports = new PostsStore(

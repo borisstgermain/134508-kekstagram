@@ -1,12 +1,19 @@
 require(`dotenv`).config();
-const executor = require(`./src/executor`);
+const executor = require(`./src/cli/executor`);
 const {getErrorMessage} = require(`./src/utils/log`);
+const {name, author} = require(`./package.json`);
 
 const args = process.argv.slice(2);
 const [command, ...arg] = args;
 
 if (!command) {
-  executor.greeting.execute();
+  console.log(`
+      Привет пользователь!
+      Эта программа будет запускать сервер «${name}».
+      Автор: ${author}.
+
+      Запустите программу с параметром --help для справки
+    `);
 } else {
   let exec;
 
